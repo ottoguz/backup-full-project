@@ -1,12 +1,15 @@
 import subprocess
 import time
+from sys import platform
+
 
 def select_os():
-    op_sys = str(input('Enter the OS(linux/windows):'))
-    if op_sys == 'linux':
-        return op_sys
-    elif op_sys == 'windows':
-        return op_sys
+    if platform == 'linux' or 'linux2':
+        return 'linux'
+    elif platform == 'win32':
+        return 'windows'
+    #elif platform == 'darwin':
+        #return 'OS X'
 
 
 def start(start_time):
@@ -47,7 +50,7 @@ def finish(st_day, st_time, path_log, bkp_name):
 
 def unmount_disk(disk):
     try:
-        umount = 'umount {} /mnt' .format(disk)
+        umount = 'umount {} /mnt'.format(disk)
         subprocess.call(umount, shell=True)
         return True
     except OSError:
@@ -57,17 +60,16 @@ def unmount_disk(disk):
 def generate_log_linux():
     date = time.strftime('%H:%M:%S')
     file_log = '{}-backup-full.txt.tar.gz'.format(date)
-    path_log = '/var/log/backup/backup-full/{}' .format(file_log)
+    path_log = '/var/log/backup/backup-full/{}'.format(file_log)
     return path_log
 
 
 def generate_log_windows():
     date = time.strftime('%y-%m-%d')
     time_bkp = time.strftime('%H:%M:%S')
-    file_log = '{} {}-backup-full.zip' .format(date, time_bkp)
+    file_log = '{} {}-backup-full.zip'.format(date, time_bkp)
     path_log = 'E:\\backup\\backup_full_logs {}'.format(file_log)
     return path_log
-
 
 
 def gen_backup_linux():
@@ -92,7 +94,7 @@ def backup_full_linux():
     disk = '/dev/sdb1'
     bkp_start_time = time.strftime('%H:%M:%S')
     start_time = start(bkp_start_time)
-    #print(start_time)
+    # print(start_time)
 
     backup = gen_backup_linux()
 
@@ -109,8 +111,7 @@ def backup_full_linux():
     subprocess.call(backup + log, shell=True)
 
     start_day = time.strftime('%d-%m-%y')
-    final = finish(start_day, bkp_start_time, path_log, backup,)
-
+    final = finish(start_day, bkp_start_time, path_log, backup, )
 
     r = open(path_log, 'r')
     content = r.readlines()
@@ -147,5 +148,3 @@ if op_sys == 'linux':
     backup_full_linux()
 else:
     backup_full_windows()
-
-
