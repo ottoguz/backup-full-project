@@ -66,7 +66,7 @@ def generate_log_linux():
 
 def generate_log_windows():
     #date = time.strftime('%y-%m-%d')
-    time_bkp = time.strftime('%H:r%M:%S')
+    time_bkp = time.strftime('%H:%M:%S')
     file_log = '{}-backup-full.zip'.format(time_bkp)
     path_log = 'E:\\backup\\backup_full_logs {}'.format(file_log)
     return path_log
