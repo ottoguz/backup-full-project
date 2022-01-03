@@ -1,4 +1,4 @@
-
+#
 
 import subprocess
 import time
@@ -108,7 +108,7 @@ def gen_backup_windows():
     return backup
 
 
-def backup_full_linux():
+def full_backup_linux():
     disk = '/dev/sdb1'
     bkp_start_time = time.strftime('%H:%M:%S')
     start_time = header(bkp_start_time)
@@ -143,7 +143,7 @@ def backup_full_linux():
     unmount_disk(disk)
 
 
-def backup_full_windows():
+def full_backup_windows():
     bkp_start_time = time.strftime('%H:%M:%S')
     start_time = header(bkp_start_time)
     print(start_time)
@@ -168,6 +168,7 @@ def backup_full_windows():
 op_sys = select_os()
 try:
     if op_sys == 'linux':
-        backup_full_linux()
+        full_backup_linux()
 except OSError:
-    backup_full_windows()
+    full_backup_windows()
+    
