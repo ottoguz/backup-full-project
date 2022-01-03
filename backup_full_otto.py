@@ -49,7 +49,7 @@ def footer(st_day, st_time, path_log, bkp_name):
     return final
 
 
-def unmount_disk(disk):
+def unmount_disk_linux(disk):
     try:
         umount = 'umount {} /mnt'.format(disk)
         subprocess.call(umount, shell=True)
@@ -139,7 +139,7 @@ def full_backup_linux():
     for i in range(len(content)):
         print(content[i], end="")
 
-    unmount_disk(disk)
+    unmount_disk_linux(disk)
 
 
 def full_backup_windows():
