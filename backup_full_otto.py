@@ -58,6 +58,16 @@ def unmount_disk_linux(disk):
         return False
 
 
+def mount_disk_windows():
+    mount = 'mountvol F: \\\\?\\Volume{2ba99565-d610-11eb-8376-806e6f6e6963}\\'
+    subprocess.call(mount, shell=True)
+
+
+def unmount_disk_windows():
+    unmount = 'mountvol F: /p'
+    subprocess.call(unmount, shell=True)
+
+
 def generate_log_linux():
     date = time.strftime('%d-%m-%y')
     file_log = '{}-backup-full.txt'.format(date)
@@ -143,6 +153,8 @@ def full_backup_linux():
 
 
 def full_backup_windows():
+    mount_disk_windows()
+
     bkp_start_time = time.strftime('%H:%M:%S')
     start_time = header(bkp_start_time)
     print(start_time)
@@ -162,6 +174,8 @@ def full_backup_windows():
 
     log_to_folder = 'move C:\\Users\\55359\\Desktop\\Software_Engineering\\Atividade_extensionista_1\\backup-full-project-main\\backupfull_log_{}.txt E:\\backup\\backup_full_logs' .format(start_day)
     subprocess.call(log_to_folder, shell=True)
+
+    unmount_disk_windows()
 
 
 op_sys = select_os()
