@@ -1,17 +1,23 @@
 """
 This program (Full Backup) makes a full backup of contents from a specific folder and sends it to a destined backup
 folder. It also creates a log file in order to keep track of backup occurrences displaying the date/time and files
-backed up.
+backed up. Then, it sends the log file through email.
 """
 
+
+# Libraries used to create the backup + log
 import subprocess
 import time
 from sys import platform
+
+
+# Libraries used to create the function that sends the log through email
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+
 
 # This function acknowledges which OS the program is running on
 def select_os():
@@ -138,7 +144,8 @@ def gen_backup_windows():
     return backup
 
 
-def send_email_linux(path_log):
+# Sends the log file vie email
+def send_email(path_log):
     try:
         fromaddr = 'otto@terminalx.net.br'
         toaddr = 'otto@terminalx.net.br'
@@ -157,7 +164,7 @@ def send_email_linux(path_log):
         part = MIMEBase('application', 'octet-stream')
         part.set_payload((attachment.read()))
         encoders.encode_base64(part)
-        part.add_header('Content-Disposition', 'attachment; filename= {}' .format(path_log))
+        part.add_header('Content-Disposition', 'attachment; filename= {}'.format(path_log))
 
         msg.attach(part)
 
@@ -211,11 +218,14 @@ def full_backup_linux():
     r = open(path_log, 'w')
     r.writelines(content)
     r.close()
+
+    # Iteration created to display the list of files while the program makes the backup
     for i in range(len(content)):
         print(content[i], end="")
 
+    # Unmounts the disk containing the backup and sends the log file via email
     unmount_disk_linux(disk)
-    send_email_linux(path_log)
+    send_email(path_log)
 
 
 # Main function for windows
@@ -248,7 +258,9 @@ def full_backup_windows():
                     '-project-main\\backupfull_log_{}.txt E:\\backup\\backup_full_logs'.format(start_day)
     subprocess.call(log_to_folder, shell=True)
 
+    # Unmounts the disk containing the backup and sends the log file via email
     unmount_disk_windows()
+    send_email(log_file_windows(start_time, file_list, final))
 
 
 # Here the function select_os() is summoned to acknowledge the OS on which the program is running
