@@ -129,7 +129,7 @@ def full_backup_linux():
     subprocess.call(backup + log, shell=True)
 
     start_day = time.strftime('%d-%m-%y')
-    final = footer(start_day, bkp_start_time, path_log, backup[20:47])
+    final = footer(start_day, bkp_start_time, path_log, backup[8:20] + backup[20:47])
 
     r = open(path_log, 'r')
     content = r.readlines()
@@ -171,4 +171,3 @@ try:
         full_backup_linux()
 except OSError:
     full_backup_windows()
-    
