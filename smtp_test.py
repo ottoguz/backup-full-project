@@ -139,7 +139,8 @@ def gen_backup_windows():
     return backup
 
 
-def send_email(path_log):
+# Sends the log file vie email(linux)
+def send_email_linux(path_log):
     try:
         fromaddr = 'otto@terminalx.net.br'
         toaddr = 'otto@terminalx.net.br'
