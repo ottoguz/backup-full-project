@@ -7,6 +7,11 @@ backed up.
 import subprocess
 import time
 from sys import platform
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 
 # This function acknowledges which OS the program is running on
@@ -134,6 +139,43 @@ def gen_backup_windows():
     return backup
 
 
+# Sends the log file vie email
+def send_email(path_log):
+    try:
+        fromaddr = 'otto@terminalx.net.br'
+        toaddr = 'otto@terminalx.net.br'
+        msg = MIMEMultipart()
+
+        msg['From'] = fromaddr
+        msg['To'] = toaddr
+        msg['Subject'] = 'Full backup logs to Xterm'
+
+        body = '\n Please find attached the backup logs'
+
+        msg.attach(MIMEText(body, 'plain'))
+
+        attachment = open(path_log, 'rb')
+
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload((attachment.read()))
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', 'attachment; filename= {}'.format(path_log))
+
+        msg.attach(part)
+
+        attachment.close()
+
+        server = smtplib.SMTP('smtp.hostinger.com.br', 587)
+        server.starttls()
+        server.login(fromaddr, 'Emiliano2020#')
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
+        print('\nEmail forwarded successfully!')
+    except:
+        print('\n Error sending the email!')
+
+
 # Main function for linux
 def full_backup_linux():
     disk = '/dev/sdb1'
@@ -175,6 +217,7 @@ def full_backup_linux():
         print(content[i], end="")
 
     unmount_disk_linux(disk)
+    send_email(path_log)
 
 
 # Main function for windows
@@ -208,6 +251,7 @@ def full_backup_windows():
     subprocess.call(log_to_folder, shell=True)
 
     unmount_disk_windows()
+    send_email(log_file_windows(start_time, file_list, final))
 
 
 # Here the function select_os() is summoned to acknowledge the OS on which the program is running
