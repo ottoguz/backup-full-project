@@ -1,12 +1,17 @@
 """
 This program (Full Backup) makes a full backup of contents from a specific folder and sends it to a destined backup
 folder. It also creates a log file in order to keep track of backup occurrences displaying the date/time and files
-backed up.
+backed up. Then, it sends the log file through email.
 """
 
+
+# Libraries used to create the backup + log
 import subprocess
 import time
 from sys import platform
+
+
+# Libraries used to create the function that sends the log through email
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -213,9 +218,12 @@ def full_backup_linux():
     r = open(path_log, 'w')
     r.writelines(content)
     r.close()
+
+    # Iteration created to display the list of files while the program makes the backup
     for i in range(len(content)):
         print(content[i], end="")
 
+    # Unmounts the disk containing the backup and sends the log file via email
     unmount_disk_linux(disk)
     send_email(path_log)
 
@@ -250,6 +258,7 @@ def full_backup_windows():
                     '-project-main\\backupfull_log_{}.txt E:\\backup\\backup_full_logs'.format(start_day)
     subprocess.call(log_to_folder, shell=True)
 
+    # Unmounts the disk containing the backup and sends the log file via email
     unmount_disk_windows()
     send_email(log_file_windows(start_time, file_list, final))
 
