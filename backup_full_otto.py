@@ -137,27 +137,34 @@ def gen_backup_windows():
 # Main function for linux
 def full_backup_linux():
     disk = '/dev/sdb1'
+
+    # Adds the time to the header
     bkp_start_time = time.strftime('%H:%M:%S')
     start_time = header(bkp_start_time)
     # print(start_time)
 
+    # Variables to summon the backup function, create the log file and send it to the destined folder
     backup = gen_backup_linux()
-
     path_log = generate_log_linux()
     log = '>> {}'.format(path_log)
 
+    # Subscribes the header onto the log file
     x = open(path_log, 'w')
     x.write(start_time)
     x.close()
 
+    # Mounts the disk where the backup will be stored
     mount = 'mount ' + disk + ' /mnt'
     subprocess.call(mount, shell=True)
 
     subprocess.call(backup + log, shell=True)
 
+    # Summons the footer and adds al needed info (start date/time, finish date/time, path to log file,
+    # path to backup file)
     start_day = time.strftime('%d-%m-%y')
     final = footer(start_day, bkp_start_time, path_log, backup[20:47])
 
+    # Reads and appends the list of backed up files to the log
     r = open(path_log, 'r')
     content = r.readlines()
     content.append(final)
@@ -174,10 +181,12 @@ def full_backup_linux():
 def full_backup_windows():
     mount_disk_windows()
 
+    # Adds the time to the header
     bkp_start_time = time.strftime('%H:%M:%S')
     start_time = header(bkp_start_time)
     print(start_time)
 
+    # Variables to summon the backup, log and list of files function, prints the list of files as well
     backup = gen_backup_windows()
     path_log = generate_log_windows()
     file_list = gen_list_windows()
@@ -185,12 +194,15 @@ def full_backup_windows():
 
     subprocess.call(backup, shell=True)
 
+    # Prints the footer
     start_day = time.strftime('%d-%m-%y')
     final = footer(start_day, bkp_start_time, path_log, backup[6:16] + backup[27:51].lstrip())
     print(final)
 
+    # Adds the header, list of files backed up and footer to the log file
     log_file_windows(start_time, file_list, final)
 
+    # Sends the log file to the destined folder
     log_to_folder = 'move C:\\Users\\55359\\Desktop\\Software_Engineering\\Atividade_extensionista_1\\backup-full' \
                     '-project-main\\backupfull_log_{}.txt E:\\backup\\backup_full_logs'.format(start_day)
     subprocess.call(log_to_folder, shell=True)
