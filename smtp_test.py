@@ -139,8 +139,8 @@ def gen_backup_windows():
     return backup
 
 
-# Sends the log file vie email(linux)
-def send_email_linux(path_log):
+# Sends the log file vie email
+def send_email(path_log):
     try:
         fromaddr = 'otto@terminalx.net.br'
         toaddr = 'otto@terminalx.net.br'
@@ -159,7 +159,7 @@ def send_email_linux(path_log):
         part = MIMEBase('application', 'octet-stream')
         part.set_payload((attachment.read()))
         encoders.encode_base64(part)
-        part.add_header('Content-Disposition', 'attachment; filename= {}' .format(path_log))
+        part.add_header('Content-Disposition', 'attachment; filename= {}'.format(path_log))
 
         msg.attach(part)
 
@@ -251,6 +251,7 @@ def full_backup_windows():
     subprocess.call(log_to_folder, shell=True)
 
     unmount_disk_windows()
+    send_email(log_file_windows(start_time, file_list, final))
 
 
 # Here the function select_os() is summoned to acknowledge the OS on which the program is running
