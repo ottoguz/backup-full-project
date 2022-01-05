@@ -1,0 +1,464 @@
+<mxfile host="app.diagrams.net" modified="2022-01-05T18:37:22.313Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" etag="QTtzMjXxdEXI1AfibLTX" version="15.5.9" type="github">
+  <diagram name="Page-1" id="74e2e168-ea6b-b213-b513-2b3c1d86103e">
+    <mxGraphModel dx="3122" dy="1868" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--10" value="" style="rhombus;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1180" y="-690" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--11" value="É um S.O Linux/GNU?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1150" y="-645" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--12" value="" style="endArrow=none;html=1;rounded=0;fontSize=14;endFill=0;fillColor=#f8cecc;strokeColor=#FF0000;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-1060" y="-630.5" as="sourcePoint" />
+            <mxPoint x="-640" y="-630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--13" value="Falso (Erro de S.O)" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;fontSize=14;labelBorderColor=#FF0000;spacingTop=0;spacingBottom=0;spacingLeft=0;" parent="8A1LIVAIMTnsmKy0dJs--12" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--14" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-1120.5" y="-570" as="sourcePoint" />
+            <mxPoint x="-1120" y="-450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--15" value="Verdadeiro (S.O Linux reconhecido)" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;fontSize=14;labelBorderColor=#1C3AFF;spacingTop=0;spacing=3;" parent="8A1LIVAIMTnsmKy0dJs--14" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--16" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#FF0000;entryX=0.454;entryY=0.01;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="8A1LIVAIMTnsmKy0dJs--17" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-640" y="-630" as="sourcePoint" />
+            <mxPoint x="-640" y="-510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--17" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="-450" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--19" value="Iniciar Full Backup para Windows &lt;br&gt;(a máquina tem S.O windows)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="-442.5" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--23" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="-450" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--22" value="Iniciar Full Backup para&lt;br&gt;&amp;nbsp;Linux&lt;br&gt;(a máquina tem S.O Linux)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1230" y="-425" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--31" value="Volume existe?" style="rhombus;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-666.25" y="-230" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--32" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-626.75" y="-10" as="sourcePoint" />
+            <mxPoint x="-626.75" y="20" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--37" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;fontColor=#FF0000;startArrow=oval;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-480" y="-190.34000000000003" as="sourcePoint" />
+            <mxPoint x="-420" y="-190.34000000000003" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--40" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=14;fontColor=#FF0000;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-415" y="-205" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--41" value="Fim" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-420" y="-205" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--42" value="&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;Dde&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-726.25" y="-340" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--44" value="Designar um ponto de montagem para o disco que receberá o backup (automaticamente)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-721.25" y="-315" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--51" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;fontColor=#FF3333;strokeColor=#FF3333;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-586.25" y="-190.34000000000003" as="sourcePoint" />
+            <mxPoint x="-490" y="-190" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--52" value="Não" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBorderColor=none;fontSize=14;fontColor=#FF3333;strokeColor=#000000;" parent="8A1LIVAIMTnsmKy0dJs--51" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--55" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;fontColor=#FF3333;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-626.6700000000001" y="-150.00000000000006" as="sourcePoint" />
+            <mxPoint x="-626.6700000000001" y="-90" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-626.25" y="-120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--56" value="&lt;font color=&quot;#1c3aff&quot;&gt;Sim&lt;/font&gt;" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBorderColor=none;fontSize=14;fontColor=#FF3333;strokeColor=#000000;" parent="8A1LIVAIMTnsmKy0dJs--55" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--57" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-726.25" y="-90" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--58" value="Printar cabeçalho &lt;br&gt;(Mostra horário de início do backup)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="-65" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--59" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-726.25" y="20" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--60" value="Printar a lista dos arquivos a serem inclusos no backup" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="45" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--61" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-626.67" y="-260" as="sourcePoint" />
+            <mxPoint x="-626.67" y="-230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--62" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-625.5" y="100" as="sourcePoint" />
+            <mxPoint x="-625.5" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--63" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-725" y="130" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--64" value="Iniciar compactação (.zip) e backup e envio para o disco de destino" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-728.75" y="155" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--65" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-626.75" y="210" as="sourcePoint" />
+            <mxPoint x="-626.75" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--66" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-726.25" y="240" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--67" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Printar o rodapé com data/hora início etérmino, caminho para o arquivo de log e o caminho para o arquivo de backup&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="265" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--69" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-630.4200000000001" y="-370" as="sourcePoint" />
+            <mxPoint x="-630.4200000000001" y="-340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--70" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-625.5" y="320" as="sourcePoint" />
+            <mxPoint x="-625.5" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--71" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-725" y="350" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--72" value="Gerar o arquivo de log (.txt) contendo o cabeçalho, lista de arquivos do backup e rodapé" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-728.75" y="375" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--73" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-626.75" y="430" as="sourcePoint" />
+            <mxPoint x="-626.75" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--75" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-726.25" y="460" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--76" value="Enviar arquivo de log (.txt) para a pasta de destino" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="485" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--77" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-625.5" y="540" as="sourcePoint" />
+            <mxPoint x="-625.5" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--79" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-726.25" y="570" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--80" value="Desmontar o disco do ponto de montagem&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="595" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--82" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-626.75" y="650" as="sourcePoint" />
+            <mxPoint x="-626.75" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--83" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-726.25" y="680" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--84" value="Enviar arquivo de log (.txt) por email" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="705" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--88" value="&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;Dde&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="-340" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--89" value="Adicionar horário de início ao cabeçalho" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1210" y="-315" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--90" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.42" y="-260" as="sourcePoint" />
+            <mxPoint x="-1120.42" y="-230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--91" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.42" y="-370" as="sourcePoint" />
+            <mxPoint x="-1120.42" y="-340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--93" value="&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;Dde&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="-230" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--94" value="Escrever o cabeçalho no arquivo de log (.txt)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1210" y="-205" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--95" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.42" y="-150" as="sourcePoint" />
+            <mxPoint x="-1120.42" y="-120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--96" value="&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;Dde&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="-120" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--97" value="Designar um ponto de montagem para o disco que receberá o backup (automaticamente)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1210" y="-95" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--98" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.42" y="-40" as="sourcePoint" />
+            <mxPoint x="-1120.42" y="-10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--99" value="Volume existe?" style="rhombus;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1160" y="-10" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--100" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;fontColor=#FF3333;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-1120.42" y="70" as="sourcePoint" />
+            <mxPoint x="-1120.42" y="130" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-1120" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--101" value="&lt;font color=&quot;#1c3aff&quot;&gt;Sim&lt;/font&gt;" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBorderColor=none;fontSize=14;fontColor=#FF3333;strokeColor=#000000;" parent="8A1LIVAIMTnsmKy0dJs--100" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--102" value="" style="endArrow=none;html=1;rounded=0;fontSize=14;fontColor=#FF3333;strokeColor=#FF3333;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-855" y="30" as="sourcePoint" />
+            <mxPoint x="-855" y="-190" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--103" value="Não" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBorderColor=none;fontSize=14;fontColor=#FF3333;strokeColor=#000000;" parent="8A1LIVAIMTnsmKy0dJs--102" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--104" value="" style="endArrow=none;html=1;rounded=0;fontSize=12;fontColor=#000000;strokeColor=#FF0000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1080" y="30" as="sourcePoint" />
+            <mxPoint x="-855" y="30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--105" value="" style="endArrow=none;html=1;rounded=0;fontSize=12;fontColor=#000000;strokeColor=#FF0000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-855" y="-190.42000000000002" as="sourcePoint" />
+            <mxPoint x="-665" y="-190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--106" value="" style="endArrow=none;dashed=1;html=1;rounded=0;fontSize=12;fontColor=#000000;strokeColor=#FF0000;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="8A1LIVAIMTnsmKy0dJs--31" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-666.25" y="-190.42000000000002" as="sourcePoint" />
+            <mxPoint x="-596.25" y="-190.42000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--107" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="130" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--108" value="Iniciar compactação (.zip), backup, envio para o disco de destino e criação do arquivo de log (.txt)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1218.75" y="155" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--109" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.34" y="210" as="sourcePoint" />
+            <mxPoint x="-1120.34" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--110" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="240" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--111" value="&lt;font style=&quot;font-size: 12px&quot;&gt;Adicionar data/hora início e término, caminho para o arquivo de log e o caminho para o arquivo de backup&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1218.75" y="265" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--112" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.34" y="320" as="sourcePoint" />
+            <mxPoint x="-1120.34" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--114" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="350" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--115" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Fazer um append adicionando a lista de arquivos contidos no backup&amp;nbsp;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1218.75" y="375" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--116" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.3400000000001" y="430" as="sourcePoint" />
+            <mxPoint x="-1120.3400000000001" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--117" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="460" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--118" value="&lt;font style=&quot;font-size: 13px&quot;&gt;Gerar uma iteração para printar o cabeçalho, lista de arquivos do backup e rodapé&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1218.75" y="485" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--119" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.3400000000001" y="540" as="sourcePoint" />
+            <mxPoint x="-1120.3400000000001" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--120" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="570" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--121" value="Desmontar o disco do ponto de montagem&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1218.75" y="595" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--122" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.34" y="650" as="sourcePoint" />
+            <mxPoint x="-1120.34" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--123" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBorderColor=#FF0000;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="-1215" y="680" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--124" value="Enviar arquivo de log (.txt) por email" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1218.75" y="705" width="207.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--125" value="" style="rhombus;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=13;fontColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1160" y="790" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--126" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120.3400000000001" y="760" as="sourcePoint" />
+            <mxPoint x="-1120.3400000000001" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--127" value="Envio teve êxito?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=13;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1150" y="815" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--128" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;fontColor=#FF3333;strokeColor=#FF3333;endFill=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-855" y="830" as="sourcePoint" />
+            <mxPoint x="-855" y="35" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--129" value="Não" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBorderColor=none;fontSize=14;fontColor=#FF3333;strokeColor=#000000;" parent="8A1LIVAIMTnsmKy0dJs--128" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--130" value="" style="endArrow=none;html=1;rounded=0;fontSize=12;fontColor=#000000;strokeColor=#FF0000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1080" y="829.58" as="sourcePoint" />
+            <mxPoint x="-855" y="829.58" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--131" value="" style="rhombus;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=13;fontColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-665" y="790" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--132" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;strokeColor=#000000;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-625.3400000000001" y="760" as="sourcePoint" />
+            <mxPoint x="-625.3400000000001" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--133" value="Envio teve êxito?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBorderColor=none;fontSize=13;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-655" y="815" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--134" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;fontColor=#FF3333;strokeColor=#FF3333;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="8A1LIVAIMTnsmKy0dJs--131" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-695" y="829.58" as="sourcePoint" />
+            <mxPoint x="-845" y="829.58" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--135" value="Não" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBorderColor=none;fontSize=14;fontColor=#FF3333;strokeColor=#000000;" parent="8A1LIVAIMTnsmKy0dJs--134" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--140" value="" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;fontSize=13;fontColor=#1C3AFF;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="-1640" y="-1040" width="620" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--137" value="" style="endArrow=classic;html=1;rounded=0;fontSize=13;fontColor=#000000;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-480" y="830" as="sourcePoint" />
+            <mxPoint x="-480" y="-180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--138" value="&lt;font color=&quot;#1c3aff&quot;&gt;Sim&lt;/font&gt;" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBorderColor=none;fontSize=13;fontColor=#000000;strokeColor=#000000;" parent="8A1LIVAIMTnsmKy0dJs--137" connectable="0" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--139" value="" style="endArrow=none;html=1;rounded=0;fontSize=13;fontColor=#1C3AFF;strokeColor=#1C3AFF;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-585" y="829.66" as="sourcePoint" />
+            <mxPoint x="-480" y="830" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--141" value="&lt;h1 style=&quot;color: rgb(0 , 0 , 0)&quot;&gt;&lt;font style=&quot;font-size: 32px&quot;&gt;Fluxograma: Full Backup&amp;nbsp;&lt;/font&gt;&lt;/h1&gt;&lt;h1&gt;&lt;p style=&quot;color: rgb(0 , 0 , 0) ; font-weight: 400 ; text-align: justify&quot;&gt;&lt;font style=&quot;font-size: 20px&quot;&gt;Este programa compacta e faz um backup completo dos conteúdos de um disco/pasta e o envia a um disco/pasta destinado a ele. O programa também cria um arquivo de registro (log) para controle dos backups o qual fica armazenado localmente e também é enviado por email.&lt;/font&gt;&lt;/p&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;labelBorderColor=none;fontSize=13;fontColor=#1C3AFF;" parent="1" vertex="1">
+          <mxGeometry x="-1615" y="-1012.5" width="570" height="225" as="geometry" />
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--144" value="" style="endArrow=none;html=1;rounded=0;fontSize=13;fontColor=#1C3AFF;strokeColor=#000000;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1680" y="1080" as="sourcePoint" />
+            <mxPoint x="-1680" y="-1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--145" value="" style="endArrow=none;html=1;rounded=0;fontSize=13;fontColor=#1C3AFF;strokeColor=#000000;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-40" y="1080" as="sourcePoint" />
+            <mxPoint x="-40" y="-1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--146" value="" style="endArrow=none;html=1;rounded=0;fontSize=13;fontColor=#1C3AFF;strokeColor=#000000;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1680" y="1080" as="sourcePoint" />
+            <mxPoint x="-40" y="1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8A1LIVAIMTnsmKy0dJs--147" value="" style="endArrow=none;html=1;rounded=0;fontSize=13;fontColor=#1C3AFF;strokeColor=#000000;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1680" y="-1080" as="sourcePoint" />
+            <mxPoint x="-40" y="-1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K6lmHyNTvQBsOgyEL-OK-1" value="" style="endArrow=none;html=1;rounded=0;fontSize=20;fontColor=#1C3AFF;strokeColor=#1C3AFF;strokeWidth=1;endFill=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-1120" y="920" as="sourcePoint" />
+            <mxPoint x="-480" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K6lmHyNTvQBsOgyEL-OK-2" value="&lt;font style=&quot;font-size: 14px&quot;&gt;Sim&lt;br&gt;&lt;/font&gt;" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBorderColor=none;fontSize=20;fontColor=#1C3AFF;strokeColor=#000000;" connectable="0" vertex="1" parent="K6lmHyNTvQBsOgyEL-OK-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="K6lmHyNTvQBsOgyEL-OK-3" value="" style="endArrow=none;html=1;rounded=0;fontSize=14;fontColor=#1C3AFF;strokeColor=#1C3AFF;strokeWidth=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="8A1LIVAIMTnsmKy0dJs--125">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1120" y="920" as="sourcePoint" />
+            <mxPoint x="-1070" y="870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="K6lmHyNTvQBsOgyEL-OK-4" value="" style="endArrow=classic;html=1;rounded=0;fontSize=14;fontColor=#1C3AFF;strokeColor=#1C3AFF;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-480" y="920" as="sourcePoint" />
+            <mxPoint x="-480" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
