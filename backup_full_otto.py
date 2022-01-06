@@ -4,12 +4,10 @@ folder. It also creates a log file in order to keep track of backup occurrences 
 backed up. Then, it sends the log file through email.
 """
 
-
 # Libraries used to create the backup + log
 import subprocess
 import time
 from sys import platform
-
 
 # Libraries used to create the function that sends the log through email
 import smtplib
@@ -140,7 +138,7 @@ def gen_backup_windows():
     backup_file_name = '{}-backupfull.zip'.format(date)
     # backup_destination = 'E:\\backup\\backup_full'
     backup_source = 'C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA'
-    backup = 'cd /d F:\\backup\\ && tar -cf {} "{}" '.format(backup_file_name, backup_source)
+    backup = 'cd /d F:\\backup\\ && tar -czf {} "{}" '.format(backup_file_name, backup_source)
     return backup
 
 
@@ -247,7 +245,7 @@ def full_backup_windows():
 
     # Prints the footer
     start_day = time.strftime('%d-%m-%y')
-    final = footer(start_day, bkp_start_time, path_log, backup[6:16] + backup[27:51].lstrip())
+    final = footer(start_day, bkp_start_time, path_log, backup[6:16] + backup[28:52].lstrip())
     print(final)
 
     # Adds the header, list of files backed up and footer to the log file
