@@ -117,7 +117,7 @@ def log_file_windows(bkp_start_time, file_list, final):
 
 # generates a list with the files to be backed up on windows
 def gen_list_windows():
-    files = 'cd /d C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA\\test_files && dir /s /b'
+    files = 'cd /d C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA && dir /s /b'
     files_out = subprocess.getoutput(files)
     return files_out
 
@@ -137,7 +137,7 @@ def gen_backup_windows():
     date = time.strftime('%d-%m-%y')
     backup_file_name = 'full_backup_{}.zip'.format(date)
     # backup_destination = 'E:\\backup\\backup_full'
-    backup_source = 'C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA\\test_files'
+    backup_source = 'C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA'
     backup = 'cd /d F:\\backup\\ && tar -cf {} "{}" '.format(backup_file_name, backup_source)
     return backup
 
