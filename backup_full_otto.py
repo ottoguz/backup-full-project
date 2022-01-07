@@ -170,7 +170,7 @@ def send_email(path_log):
 
         server = smtplib.SMTP('smtp.hostinger.com.br', 587)
         server.starttls()
-        server.login(fromaddr, 'Emiliano2020#')
+        server.login(fromaddr, 'password')
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
