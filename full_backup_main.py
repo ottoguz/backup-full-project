@@ -49,7 +49,7 @@ def header(start_time):
 
 
 # Footer of the Full Backup display
-def footer(st_day, st_time, path_log, bkp_name):
+def footer(date, time_bkp, path_log, bkp_name):
     today = time.strftime('%d-%m-%y')
     end_time = time.strftime('%H:%M:%S')
     bkp_name = bkp_name.replace('tar cvf', '')
@@ -61,7 +61,7 @@ def footer(st_day, st_time, path_log, bkp_name):
                 LOG FILE PATH     : {}
                 BKP FILE PATH     : {}
     ===========================================================================
-    '''.format(st_day, st_time, today, end_time, path_log, bkp_name)
+    '''.format(date, time_bkp, today, end_time, path_log, bkp_name)
     return final
 
 
@@ -78,13 +78,13 @@ def unmount_disk_linux(disk):
 # When running the program on windows OS this function is summoned to mount the disk to receive the backup
 def mount_disk_windows():
     mount = 'mountvol F: \\\\?\\Volume{2ba99565-d610-11eb-8376-806e6f6e6963}\\'
-    subprocess.call(mount, shell=True)
+    subprocess.run(mount, shell=True)
 
 
 # When running the program on windows OS this function is summoned to unmount the disk to receive the backup
 def unmount_disk_windows():
     unmount = 'mountvol F: /p'
-    subprocess.call(unmount, shell=True)
+    subprocess.run(unmount, shell=True)
 
 
 # creates the log file (.txt) and its path for linux
@@ -104,8 +104,9 @@ def generate_log_windows():
     return path_log
 
 
-# subscribes the header(bkp_start_time), list of backed up files, and footer(final) on the log file for windows
-def log_file_windows(bkp_start_time, file_list, final):
+# subscribes the header(bkp_start_time), list of backed up files (file_list), and footer(final) on the log file for
+# windows
+def subscribe_log_windows(bkp_start_time, file_list, final):
     file = 'full_backup_log_{}.txt'.format(time.strftime('%d-%m-%y'))
     f = open(file, 'w')
     f.write(bkp_start_time)
@@ -117,7 +118,7 @@ def log_file_windows(bkp_start_time, file_list, final):
 
 # generates a list with the files to be backed up on windows
 def gen_list_windows():
-    files = 'cd /d C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA && dir /s /b'
+    files = 'cd /d C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA\\test_files && dir /b'
     files_out = subprocess.getoutput(files)
     return files_out
 
@@ -137,7 +138,7 @@ def gen_backup_windows():
     date = time.strftime('%d-%m-%y')
     backup_file_name = 'full_backup_{}.zip'.format(date)
     # backup_destination = 'E:\\backup\\backup_full'
-    backup_source = 'C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA'
+    backup_source = 'C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA\\test_files'
     backup = 'cd /d F:\\backup\\ && tar -cf {} "{}" '.format(backup_file_name, backup_source)
     return backup
 
@@ -170,7 +171,7 @@ def send_email(path_log):
 
         server = smtplib.SMTP('smtp.hostinger.com.br', 587)
         server.starttls()
-        server.login(fromaddr, 'password')
+        server.login(fromaddr, 'Password')
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
@@ -232,8 +233,8 @@ def full_backup_windows():
 
     # Adds the time to the header
     bkp_start_time = time.strftime('%H:%M:%S')
-    start_time = header(bkp_start_time)
-    print(start_time)
+    start_time_header = header(bkp_start_time)
+    print(start_time_header)
 
     # Variables to summon the backup, log and list of files function, prints the list of files as well
     backup = gen_backup_windows()
@@ -241,24 +242,24 @@ def full_backup_windows():
     file_list = gen_list_windows()
     print(file_list)
 
-    subprocess.call(backup, shell=True)
+    subprocess.run(backup, shell=True)
 
     # Prints the footer
-    start_day = time.strftime('%d-%m-%y')
-    final = footer(start_day, bkp_start_time, path_log, backup[6:16] + backup[28:52].lstrip())
+    date = time.strftime('%d-%m-%y')
+    final = footer(date, bkp_start_time, path_log, backup[6:16] + backup[28:52].lstrip())
     print(final)
 
     # Adds the header, list of files backed up and footer to the log file
-    log_file_windows(start_time, file_list, final)
+    subscribe_log_windows(start_time_header, file_list, final)
 
     # Sends the log file to the destined folder
     log_to_folder = 'move C:\\Users\\55359\\Desktop\\Software_Engineering\\Atividade_extensionista_1\\backup-full' \
-                    '-project-main\\full_backup_log_{}.txt E:\\backup\\backup_full_logs'.format(start_day)
-    subprocess.call(log_to_folder, shell=True)
+                    '-project-main\\full_backup_log_{}.txt E:\\backup\\backup_full_logs'.format(date)
+    subprocess.run(log_to_folder, shell=True)
 
     # Unmounts the disk containing the backup and sends the log file via email
     unmount_disk_windows()
-    send_email(log_file_windows(start_time, file_list, final))
+    send_email(subscribe_log_windows(start_time_header, file_list, final))
 
 
 # Here the function select_os() is summoned to acknowledge the OS on which the program is running
@@ -268,3 +269,4 @@ try:
         full_backup_linux()
 except OSError:
     full_backup_windows()
+
