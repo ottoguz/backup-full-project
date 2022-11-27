@@ -321,9 +321,9 @@ class Backup:
     def send_email(self, from_email, to_email, pass_email):
         global file
         try:
-            fromaddr = from_email  # 'otto@terminalx.net.br'
-            toaddr = to_email  # 'otto@terminalx.net.br'
-            password = pass_email  # 'Emiliano2020#'
+            fromaddr = from_email
+            toaddr = to_email
+            password = pass_email  
 
             msg = MIMEMultipart()
 
