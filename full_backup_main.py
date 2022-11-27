@@ -1,13 +1,9 @@
-"""
-This program (Full Backup) makes a full backup of contents from a specific folder and sends it to a destined backup
-folder. It also creates a log file in order to keep track of backup occurrences displaying the date/time and files
-backed up. Then, it sends the log file through email.
-"""
+#FUNCTIONAL
 
 # Libraries used to create the backup + log
 import subprocess
 import time
-from sys import platform
+import platform
 
 # Libraries used to create the function that sends the log through email
 import smtplib
@@ -16,257 +12,357 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
+# Library for the GUI
+from tkinter import *
+from tkinter import filedialog
+
+source_dir = ""
+
+
+def source_dir_func():
+    global source_dir
+    source_dir = filedialog.askdirectory()
+    source_search_txt.config(text=source_dir)
+    return source_dir
+
+
+dest_dir = ""
+
+
+def dest_dir_func():
+    global dest_dir
+    dest_dir = filedialog.askdirectory()
+    destination_search_txt.config(text=dest_dir)
+    return dest_dir
+
+
+def put_message(e):
+    message_label.config(text="Full backup is running, please wait...")
+
+
+def remove_message(e):
+    message_label.config(text="")
+
+
+def email_window():
+    window = Tk()
+    window.title("Terminal X - Full Backup - Send Email")
+    window.geometry("400x300")
+    window.configure(bg="#FFFFFF")
+
+    email_label = Label(window,
+                        text="Send backup log file via Email:",
+                        bg="#FFFFFF", fg="#000000",
+                        font="Arial 14 bold")
+    email_label.place(x=54, y=30)
+
+    from_email_label = Label(window,
+                             text="From: ",
+                             bg="#FFFFFF",
+                             fg="#000000",
+                             font="Arial 12 bold")
+    from_email_label.place(x=20, y=80)
+
+    from_email = Entry(window,
+                       bg="#008AC1",
+                       fg="#FFFFFF",
+                       width=36,
+                       font="Arial 11 bold")
+    from_email.place(x=75, y=82)
+
+    to_email_label = Label(window,
+                           text="To: ",
+                           bg="#FFFFFF",
+                           fg="#000000",
+                           font="Arial 12 bold")
+    to_email_label.place(x=20, y=125)
+
+    to_email = Entry(window,
+                     bg="#008AC1",
+                     fg="#FFFFFF", width
+                     =36, font="Arial 11 bold")
+    to_email.place(x=75, y=127)
+
+    pass_email_label = Label(window,
+                             text="Password: ",
+                             bg="#FFFFFF",
+                             fg="#000000",
+                             font="Arial 12 bold")
+    pass_email_label.place(x=20, y=170)
+
+    pass_email = Entry(window,
+                       bg="#008AC1",
+                       fg="#FFFFFF",
+                       width=20,
+                       font="Arial 11 bold", show="*")
+    pass_email.place(x=120, y=173)
+
+    backup.generate_log()
+    backup.subscribe_log(backup.header(), backup.gen_list(), backup.footer())
+
+    send_button = Button(window,
+                         command=lambda: backup.send_email(from_email.get(), to_email.get(), pass_email.get()),
+                         text="SEND",
+                         bg="#008AC1",
+                         fg="#FFFFFF",
+                         font="Arial 12 bold",
+                         bd=1,
+                         relief="solid")
+    send_button.place(x=180, y=220)
+    send_button.bind("<Button>", remove_message)
+
+
+root = Tk()
+root.title("Terminal X - Full Backup")
+root.geometry("800x600")
+frame = PhotoImage(file="background.png")
+frame_label = Label(root,
+                    border=0,
+                    bg='grey',
+                    image=frame)
+frame_label.place(x=0, y=0)
+
+header_text = Label(root,
+                    text=f'Full Backup started at: {time.strftime("%H:%M:%S")}',
+                    font="Arial 12 bold",
+                    bg="#ffffff")
+header_text.place(x=210, y=100)
+
+source_label = Label(root,
+                     text=f'Select the backup source directory: ',
+                     font="Arial 12 bold",
+                     bg="#ffffff")
+source_label.place(x=210, y=150)
+
+source_button = Button(root,
+                       command=lambda: source_dir_func(),
+                       text="SELECT", bg="#008AC1",
+                       fg="#FFFFFF",
+                       font="Arial 8 bold",
+                       bd=1,
+                       relief="solid")
+source_button.place(x=220, y=180)
+
+source_search_txt = Label(root,
+                          text=source_dir,
+                          bg="#000000",
+                          fg="#FFFFFF",
+                          width=50,
+                          font="Arial 10 bold")
+source_search_txt.place(x=280, y=180)
+
+destination_label = Label(root,
+                          text=f'Select the backup destination directory: ',
+                          font="Arial 12 bold",
+                          bg="#ffffff")
+destination_label.place(x=210, y=220)
+
+destination_button = Button(root,
+                            command=lambda: dest_dir_func(),
+                            text="SELECT",
+                            bg="#008AC1",
+                            fg="#FFFFFF",
+                            font="Arial 8 bold",
+                            bd=1,
+                            relief="solid")
+destination_button.place(x=220, y=250)
+
+destination_search_txt = Label(root,
+                               text=dest_dir,
+                               bg="#000000",
+                               fg="#FFFFFF",
+                               width=50,
+                               font="Arial 10 bold")
+destination_search_txt.place(x=280, y=250)
+
+start_button = Button(root,
+                      command=lambda: backup.gen_backup() and email_window(),
+                      text="START",
+                      bg="#008AC1",
+                      fg="#FFFFFF",
+                      font="Arial 12 bold",
+                      bd=1,
+                      relief="solid")
+start_button.place(x=440, y=300)
+start_button.bind("<Button>", put_message)
+
+message_label = Label(root,
+                      text="",
+                      font="Arial 12 bold",
+                      bg="#ffffff")
+message_label.place(x=332, y=350)
+
 
 # This function acknowledges which OS the program is running on
 def select_os():
-    if platform == 'linux' or 'linux2':
-        return 'linux'
-    elif platform == 'win32':
-        return 'windows'
-    # elif platform == 'darwin':
-    # return 'OS X'
+    os = platform.system()
+    return os
 
 
-# Header of the Full Backup display
-def header(start_time):
-    start = '''
-  ===========================================================================
-||    ______ _    _ _      _       ____          _____ _  ___    _ _____     ||
-||   |  ____| |  | | |    | |     |  _ \   /\   / ____| |/ / |  | |  __ \    ||
-||   | |__  | |  | | |    | |     | |_)   /  \ | |    | ' /| |  | | |__) |   ||
-||   |  __| | |  | | |    | |     |  _ < / /\ \| |    |  < | |  | |  ___/    ||
-||   | |    | |__| | |____| |____ | |_) / ____ \ |____| . \| |__| | |        ||
-||   |_|     \____/|______|______||____/_/    \_\_____|_|\_ \____/|_|        ||
-||                                                                           ||
-||                    FULL BACKUP FROM THE FILE SERVER                       ||
-||                                                                           ||
-  ===========================================================================
-  ===========================================================================
-                 FULL BACKUP FROM THE FILE SERVER BEGAN AT {}
-  ===========================================================================
-    '''.format(start_time)
-    return start
+class Backup:
+    def __init__(self, time_now=time.strftime('%H:%M:%S'), date_now=time.strftime('%d-%m-%y')):
+        self.__backup_destination = ''
+        self.__backup_source = ''
+        self.__time_now = time_now
+        self.__date_now = date_now
+
+    def get_time_now(self):
+        return self.__time_now
+
+    def get_date_now(self):
+        return self.__date_now
+
+    # Header of the Full Backup display
+    def header(self):
+        time_now = Backup.get_time_now(self)
+        header = '''
+      ===========================================================================
+    ||    ______ _    _ _      _       ____          _____ _  ___    _ _____     ||
+    ||   |  ____| |  | | |    | |     |  _ \   /\   / ____| |/ / |  | |  __ \    ||
+    ||   | |__  | |  | | |    | |     | |_)   /  \ | |    | ' /| |  | | |__) |   ||
+    ||   |  __| | |  | | |    | |     |  _ < / /\ \| |    |  < | |  | |  ___/    ||
+    ||   | |    | |__| | |____| |____ | |_) / ____ \ |____| . \| |__| | |        ||
+    ||   |_|     \____/|______|______||____/_/    \_\_____|_|\_ \____/|_|        ||
+    ||                                                                           ||
+    ||                    FULL BACKUP FROM THE FILE SERVER                       ||
+    ||                                                                           ||
+      ===========================================================================
+      ===========================================================================
+                     FULL BACKUP FROM THE FILE SERVER BEGAN AT {}
+      ===========================================================================
+                    >>> CLOSE THE FILE TO SEND IT VIA EMAIL! <<<
+        '''.format(time_now)
+        return header
+
+    def gen_backup(self):
+        date_now = Backup.get_date_now(self)
+        os = select_os()
+        if os == 'linux':
+            bkp_file_name = '{}_backup-full.tar.gz'.format(date_now)
+            bkp_destination = '/mnt/backup/{}'.format(bkp_file_name)
+            source_path = '/home/gustavo/Documents/Pycharm/LPA'
+            backup = 'tar cvf {} {}'.format(bkp_destination, source_path)
+            return backup
+        elif os == 'Windows':
+            backup_file_name = 'full_backup_{}.tar.gz'.format(date_now)
+            backup_source = source_dir
+            self.__backup_source = backup_source
+            backup_destination = dest_dir
+            self.__backup_destination = backup_destination
+            backup = 'cd /d ' + str(backup_destination) + ' && tar -cf {} "{}" '.format(backup_file_name, backup_source)
+            subprocess.run(backup, shell=True)
+            return backup
+
+    def gen_list(self):
+        files = 'cd /d ' + self.__backup_source + ' && dir /s'
+        files_out = subprocess.getoutput(files)
+        return files_out
+
+    def generate_log(self):
+        date_now = Backup().get_date_now()
+        os = select_os()
+        if os == 'linux':
+            file_log = '{}-backup-full.txt'.format(date_now)
+            path_log = '/var/log/backup/backup-full/{}'.format(file_log)
+            return path_log
+        elif os == 'Windows':
+            file_log = 'full_backup_log_{}.txt'.format(date_now)
+            path_log = self.__backup_destination
+            path_log = path_log + "\\" + file_log
+            return path_log
+
+    def footer(self):
+        footer = '''
+        =============================================================
+                                ENDED FULL BACKUP
+                    ENDING DATE/TIME  : {}  -  {}
+                    LOG FILE PATH     : {}
+                    BKP FILE PATH     : {}
+        =============================================================
+        '''.format(time.strftime('%d/%m/%y'), time.strftime('%H:%M:%S'), self.__backup_destination,
+                   self.__backup_destination)
+        return footer
+
+    def subscribe_log(self, header, file_list, footer):
+        file = 'full_backup_log_{}.txt'.format(time.strftime('%d-%m-%y'))
+        f = open(file, 'w')
+        f.write(header)
+        f.write(file_list)
+        f.write(footer)
+        f.close()
 
 
-# Footer of the Full Backup display
-def footer(date, time_bkp, path_log, bkp_name):
-    today = time.strftime('%d-%m-%y')
-    end_time = time.strftime('%H:%M:%S')
-    bkp_name = bkp_name.replace('tar cvf', '')
-    final = '''
-    ===========================================================================
-                            ENDED FULL BACKUP
-                STARTING DATE/TIME: {}  -  {}
-                ENDING DATE/TIME  : {}  -  {}
-                LOG FILE PATH     : {}
-                BKP FILE PATH     : {}
-    ===========================================================================
-    '''.format(date, time_bkp, today, end_time, path_log, bkp_name)
-    return final
+        '''
+        cd = 'cd'
+        current_folder = subprocess.getoutput(cd)
+        log_to_folder = 'move ' + current_folder + '\\' + file + ' ' + self.__backup_destination
+        subprocess.run(log_to_folder, shell=True)
+        return file
+        '''
+    def unmount_disk(disk):
+        op_sys = select_os()
+        if op_sys == 'linux':
+            try:
+                umount = 'umount {} /mnt'.format(disk)
+                subprocess.call(umount, shell=True)
+                return True
+            except OSError:
+                return False
+        elif op_sys == 'windows':
+            try:
+                decide = input("Would you like to unmount disk?[y/n]:")
+                if decide == "y":
+                    unmount = 'mountvol F: /p'
+                    subprocess.run(unmount, shell=True)
+                    return True
+            except OSError:
+                return False
+
+    def send_email(self, from_email, to_email, pass_email):
+        global file
+        try:
+            fromaddr = from_email  # 'otto@terminalx.net.br'
+            toaddr = to_email  # 'otto@terminalx.net.br'
+            password = pass_email  # 'Emiliano2020#'
+
+            msg = MIMEMultipart()
+
+            msg['From'] = fromaddr
+            msg['To'] = toaddr
+            msg['Subject'] = 'Full backup logs to Xterm'
+
+            body = '\n Please find attached the backup logs'
+
+            msg.attach(MIMEText(body, 'plain'))
+
+            file = 'full_backup_log_{}.txt'.format(time.strftime('%d-%m-%y'))
+            attachment = open(file, 'rb')
+
+            part = MIMEBase('application', 'octet-stream')
+            part.set_payload((attachment.read()))
+            encoders.encode_base64(part)
+            part.add_header('Content-Disposition', 'attachment; filename= {}'.format(file))
+
+            msg.attach(part)
+
+            attachment.close()
+
+            server = smtplib.SMTP('smtp.hostinger.com.br', 587)
+            server.starttls()
+            server.login(fromaddr, password)
+            text = msg.as_string()
+            server.sendmail(fromaddr, toaddr, text)
+            server.quit()
+
+            open_file = "notepad " + file
+            subprocess.run(open_file)
+
+        except:
+
+            open_file = "notepad " + file
+            subprocess.run(open_file)
 
 
-# When running the program on linux OS this function is summoned to unmount the disk containing the backup
-def unmount_disk_linux(disk):
-    try:
-        umount = 'umount {} /mnt'.format(disk)
-        subprocess.call(umount, shell=True)
-        return True
-    except OSError:
-        return False
+backup = Backup()
 
-
-# When running the program on windows OS this function is summoned to mount the disk to receive the backup
-def mount_disk_windows():
-    mount = 'mountvol F: \\\\?\\Volume{2ba99565-d610-11eb-8376-806e6f6e6963}\\'
-    subprocess.run(mount, shell=True)
-
-
-# When running the program on windows OS this function is summoned to unmount the disk to receive the backup
-def unmount_disk_windows():
-    unmount = 'mountvol F: /p'
-    subprocess.run(unmount, shell=True)
-
-
-# creates the log file (.txt) and its path for linux
-def generate_log_linux():
-    date = time.strftime('%d-%m-%y')
-    file_log = '{}-backup-full.txt'.format(date)
-    path_log = '/var/log/backup/backup-full/{}'.format(file_log)
-    return path_log
-
-
-# creates the log file (.txt) and its path for windows
-def generate_log_windows():
-    date = time.strftime('%d-%m-%y')
-    # time_bkp = time.strftime('%H:%M:%S')
-    file_log = 'full_backup_log_{}.txt'.format(date)
-    path_log = 'E:\\backup\\backup_full_logs\\{}'.format(file_log)
-    return path_log
-
-
-# subscribes the header(bkp_start_time), list of backed up files (file_list), and footer(final) on the log file for
-# windows
-def subscribe_log_windows(bkp_start_time, file_list, final):
-    file = 'full_backup_log_{}.txt'.format(time.strftime('%d-%m-%y'))
-    f = open(file, 'w')
-    f.write(bkp_start_time)
-    f.write(file_list)
-    f.write(final)
-    f.close()
-    return file
-
-
-# generates a list with the files to be backed up on windows
-def gen_list_windows():
-    files = 'cd /d C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA\\test_files && dir /b'
-    files_out = subprocess.getoutput(files)
-    return files_out
-
-
-# Creates the backup file, compacts it and sends it to the destination on linux
-def gen_backup_linux():
-    date = time.strftime('%d-%m-%y')
-    bkp_file_name = '{}_backup-full.tar.gz'.format(date)
-    bkp_destination = '/mnt/backup/{}'.format(bkp_file_name)
-    source_path = '/home/gustavo/Documents/Pycharm/LPA'
-    backup = 'tar cvf {} {}'.format(bkp_destination, source_path)
-    return backup
-
-
-# Creates the backup file, compacts it and sends it to the destination on windows
-def gen_backup_windows():
-    date = time.strftime('%d-%m-%y')
-    backup_file_name = 'full_backup_{}.zip'.format(date)
-    # backup_destination = 'E:\\backup\\backup_full'
-    backup_source = 'C:\\Users\\55359\\Desktop\\Software_Engineering\\Python 3\\LPA\\test_files'
-    backup = 'cd /d F:\\backup\\ && tar -cf {} "{}" '.format(backup_file_name, backup_source)
-    return backup
-
-
-# Sends the log file vie email
-def send_email(path_log):
-    try:
-        fromaddr = 'otto@terminalx.net.br'
-        toaddr = 'otto@terminalx.net.br'
-        msg = MIMEMultipart()
-
-        msg['From'] = fromaddr
-        msg['To'] = toaddr
-        msg['Subject'] = 'Full backup logs to Xterm'
-
-        body = '\n Please find attached the backup logs'
-
-        msg.attach(MIMEText(body, 'plain'))
-
-        attachment = open(path_log, 'rb')
-
-        part = MIMEBase('application', 'octet-stream')
-        part.set_payload((attachment.read()))
-        encoders.encode_base64(part)
-        part.add_header('Content-Disposition', 'attachment; filename= {}'.format(path_log))
-
-        msg.attach(part)
-
-        attachment.close()
-
-        server = smtplib.SMTP('smtp.hostinger.com.br', 587)
-        server.starttls()
-        server.login(fromaddr, 'Password')
-        text = msg.as_string()
-        server.sendmail(fromaddr, toaddr, text)
-        server.quit()
-        print('\nEmail forwarded successfully!')
-    except:
-        print('\n Error sending the email!')
-
-
-# Main function for linux
-def full_backup_linux():
-    disk = '/dev/sdb1'
-
-    # Adds the time to the header
-    bkp_start_time = time.strftime('%H:%M:%S')
-    start_time = header(bkp_start_time)
-    # print(start_time)
-
-    # Variables to summon the backup function, create the log file and send it to the destined folder
-    backup = gen_backup_linux()
-    path_log = generate_log_linux()
-    log = '>> {}'.format(path_log)
-
-    # Subscribes the header onto the log file
-    x = open(path_log, 'w')
-    x.write(start_time)
-    x.close()
-
-    # Mounts the disk where the backup will be stored
-    mount = 'mount ' + disk + ' /mnt'
-    subprocess.call(mount, shell=True)
-
-    subprocess.call(backup + log, shell=True)
-
-    # Summons the footer and adds al needed info (start date/time, finish date/time, path to log file,
-    # path to backup file)
-    start_day = time.strftime('%d-%m-%y')
-    final = footer(start_day, bkp_start_time, path_log, backup[8:47])
-
-    # Reads and appends the list of backed up files to the log
-    r = open(path_log, 'r')
-    content = r.readlines()
-    content.append(final)
-    r = open(path_log, 'w')
-    r.writelines(content)
-    r.close()
-
-    # Iteration created to display the list of files while the program makes the backup
-    for i in range(len(content)):
-        print(content[i], end="")
-
-    # Unmounts the disk containing the backup and sends the log file via email
-    unmount_disk_linux(disk)
-    send_email(path_log)
-
-
-# Main function for windows
-def full_backup_windows():
-    mount_disk_windows()
-
-    # Adds the time to the header
-    bkp_start_time = time.strftime('%H:%M:%S')
-    start_time_header = header(bkp_start_time)
-    print(start_time_header)
-
-    # Variables to summon the backup, log and list of files function, prints the list of files as well
-    backup = gen_backup_windows()
-    path_log = generate_log_windows()
-    file_list = gen_list_windows()
-    print(file_list)
-
-    subprocess.run(backup, shell=True)
-
-    # Prints the footer
-    date = time.strftime('%d-%m-%y')
-    final = footer(date, bkp_start_time, path_log, backup[6:16] + backup[28:52].lstrip())
-    print(final)
-
-    # Adds the header, list of files backed up and footer to the log file
-    subscribe_log_windows(start_time_header, file_list, final)
-
-    # Sends the log file to the destined folder
-    log_to_folder = 'move C:\\Users\\55359\\Desktop\\Software_Engineering\\Atividade_extensionista_1\\backup-full' \
-                    '-project-main\\full_backup_log_{}.txt E:\\backup\\backup_full_logs'.format(date)
-    subprocess.run(log_to_folder, shell=True)
-
-    # Unmounts the disk containing the backup and sends the log file via email
-    unmount_disk_windows()
-    send_email(subscribe_log_windows(start_time_header, file_list, final))
-
-
-# Here the function select_os() is summoned to acknowledge the OS on which the program is running
-op_sys = select_os()
-try:
-    if op_sys == 'linux':
-        full_backup_linux()
-except OSError:
-    full_backup_windows()
-
+root.mainloop()
