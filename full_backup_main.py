@@ -1,4 +1,4 @@
-#FUNCTIONAL
+# FUNCTIONAL
 
 # Libraries used to create the backup + log
 import subprocess
@@ -15,6 +15,13 @@ from email import encoders
 # Library for the GUI
 from tkinter import *
 from tkinter import filedialog
+
+
+# This function acknowledges which OS the program is running on
+def select_os():
+    os = platform.system()
+    return os
+
 
 source_dir = ""
 
@@ -40,11 +47,14 @@ def put_message(e):
     message_label.config(text="Full backup is running, please wait...")
 
 
-def remove_message(e):
+def remove_message():
     message_label.config(text="")
 
 
 def email_window():
+    def show_message(e):
+        email_message.config(text="Email sent! Please check your inbox!")
+
     window = Tk()
     window.title("Terminal X - Full Backup - Send Email")
     window.geometry("400x300")
@@ -109,7 +119,14 @@ def email_window():
                          bd=1,
                          relief="solid")
     send_button.place(x=180, y=220)
-    send_button.bind("<Button>", remove_message)
+    send_button.bind("<Button>", show_message)
+
+    email_message = Label(window,
+                          text="",
+                          font="Arial 12 bold",
+                          bg="#ffffff")
+    email_message.place(x=55, y=262)
+    remove_message()
 
 
 root = Tk()
@@ -150,6 +167,9 @@ source_search_txt = Label(root,
                           width=50,
                           font="Arial 10 bold")
 source_search_txt.place(x=280, y=180)
+os = select_os()
+if os == "Linux":
+    source_search_txt.place(x=300, y=183)
 
 destination_label = Label(root,
                           text=f'Select the backup destination directory: ',
@@ -174,6 +194,8 @@ destination_search_txt = Label(root,
                                width=50,
                                font="Arial 10 bold")
 destination_search_txt.place(x=280, y=250)
+if os == "Linux":
+    destination_search_txt.place(x=300, y=253)
 
 start_button = Button(root,
                       command=lambda: backup.gen_backup() and email_window(),
@@ -193,12 +215,6 @@ message_label = Label(root,
 message_label.place(x=332, y=350)
 
 
-# This function acknowledges which OS the program is running on
-def select_os():
-    os = platform.system()
-    return os
-
-
 class Backup:
     def __init__(self, time_now=time.strftime('%H:%M:%S'), date_now=time.strftime('%d-%m-%y')):
         self.__backup_destination = ''
@@ -211,6 +227,24 @@ class Backup:
 
     def get_date_now(self):
         return self.__date_now
+
+    def open_move_file(self):
+        if os == "Windows":
+            open_file = "notepad " + file
+            subprocess.run(open_file)
+            cd = 'cd'
+            current_folder = subprocess.getoutput(cd)
+            log_to_folder = "move " + current_folder + '\\' + file + ' ' + self.__backup_destination
+            subprocess.run(log_to_folder, shell=True)
+            return file
+        elif os == "Linux":
+            open_file = "gedit " + file
+            subprocess.run(open_file, shell=True)
+            pwd = "pwd"
+            current_folder = subprocess.getoutput(pwd)
+            log_to_folder = "mv " + current_folder + "/" + file + " " + self.__backup_destination + "/" + file
+            subprocess.run(log_to_folder, shell=True)
+            return file
 
     # Header of the Full Backup display
     def header(self):
@@ -237,48 +271,51 @@ class Backup:
     def gen_backup(self):
         date_now = Backup.get_date_now(self)
         os = select_os()
-        if os == 'linux':
-            bkp_file_name = '{}_backup-full.tar.gz'.format(date_now)
-            bkp_destination = '/mnt/backup/{}'.format(bkp_file_name)
-            source_path = '/home/gustavo/Documents/Pycharm/LPA'
-            backup = 'tar cvf {} {}'.format(bkp_destination, source_path)
+        backup_file_name = 'full_backup_{}.tar.gz'.format(date_now)
+        backup_source = source_dir
+        self.__backup_source = backup_source
+        backup_destination = dest_dir
+        self.__backup_destination = backup_destination
+        if os == "Linux":
+            backup = 'cd ' + str(backup_destination) + ' && tar -cf {} "{}" '.format(backup_file_name, backup_source)
+            subprocess.run(backup, shell=True)
             return backup
-        elif os == 'Windows':
-            backup_file_name = 'full_backup_{}.tar.gz'.format(date_now)
-            backup_source = source_dir
-            self.__backup_source = backup_source
-            backup_destination = dest_dir
-            self.__backup_destination = backup_destination
+        elif os == "Windows":
             backup = 'cd /d ' + str(backup_destination) + ' && tar -cf {} "{}" '.format(backup_file_name, backup_source)
             subprocess.run(backup, shell=True)
             return backup
 
     def gen_list(self):
-        files = 'cd /d ' + self.__backup_source + ' && dir /s'
-        files_out = subprocess.getoutput(files)
-        return files_out
+        os = select_os()
+        if os == "Windows":
+            files = "cd /d " + self.__backup_source + " && dir /s"
+            files_out = subprocess.getoutput(files)
+            return files_out
+        elif os == "Linux":
+            files = "cd " + self.__backup_source + " && ls"
+            files_out = subprocess.getoutput(files)
+            return files_out
 
     def generate_log(self):
         date_now = Backup().get_date_now()
         os = select_os()
-        if os == 'linux':
-            file_log = '{}-backup-full.txt'.format(date_now)
-            path_log = '/var/log/backup/backup-full/{}'.format(file_log)
+        file_log = 'full_backup_log_{}.txt'.format(date_now)
+        path_log = self.__backup_destination
+        if os == "Linux":
+            path_log = path_log + "/" + file_log
             return path_log
-        elif os == 'Windows':
-            file_log = 'full_backup_log_{}.txt'.format(date_now)
-            path_log = self.__backup_destination
+        elif os == "Windows":
             path_log = path_log + "\\" + file_log
             return path_log
 
     def footer(self):
         footer = '''
-        =============================================================
-                                ENDED FULL BACKUP
-                    ENDING DATE/TIME  : {}  -  {}
-                    LOG FILE PATH     : {}
-                    BKP FILE PATH     : {}
-        =============================================================
+        ===========================================================================
+                                     ENDED FULL BACKUP
+                ENDING DATE/TIME  : {}  -  {}
+                LOG FILE PATH     : {}
+                BKP FILE PATH     : {}
+        ===========================================================================
         '''.format(time.strftime('%d/%m/%y'), time.strftime('%H:%M:%S'), self.__backup_destination,
                    self.__backup_destination)
         return footer
@@ -291,39 +328,13 @@ class Backup:
         f.write(footer)
         f.close()
 
-
-        '''
-        cd = 'cd'
-        current_folder = subprocess.getoutput(cd)
-        log_to_folder = 'move ' + current_folder + '\\' + file + ' ' + self.__backup_destination
-        subprocess.run(log_to_folder, shell=True)
-        return file
-        '''
-    def unmount_disk(disk):
-        op_sys = select_os()
-        if op_sys == 'linux':
-            try:
-                umount = 'umount {} /mnt'.format(disk)
-                subprocess.call(umount, shell=True)
-                return True
-            except OSError:
-                return False
-        elif op_sys == 'windows':
-            try:
-                decide = input("Would you like to unmount disk?[y/n]:")
-                if decide == "y":
-                    unmount = 'mountvol F: /p'
-                    subprocess.run(unmount, shell=True)
-                    return True
-            except OSError:
-                return False
-
     def send_email(self, from_email, to_email, pass_email):
+        os = select_os()
         global file
         try:
             fromaddr = from_email
             toaddr = to_email
-            password = pass_email  
+            password = pass_email
 
             msg = MIMEMultipart()
 
@@ -354,13 +365,11 @@ class Backup:
             server.sendmail(fromaddr, toaddr, text)
             server.quit()
 
-            open_file = "notepad " + file
-            subprocess.run(open_file)
+            self.open_move_file()
 
         except:
 
-            open_file = "notepad " + file
-            subprocess.run(open_file)
+            self.open_move_file()
 
 
 backup = Backup()
