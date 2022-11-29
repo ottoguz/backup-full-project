@@ -11,7 +11,7 @@
     ||                                                                           ||
       ===========================================================================
       ===========================================================================
-                     FULL BACKUP FROM THE FILE SERVER BEGAN AT 12:39:28
+                     FULL BACKUP FROM THE FILE SERVER BEGAN AT 16:06:23
       ===========================================================================
                     >>> CLOSE THE FILE TO SEND IT VIA EMAIL! <<<
          Volume in drive C is Windows-SSD
@@ -30,10 +30,10 @@
 
      Total Files Listed:
                5 File(s)          5,753 bytes
-               2 Dir(s)  286,129,172,480 bytes free
+               2 Dir(s)  285,980,483,584 bytes free
         ===========================================================================
                                      ENDED FULL BACKUP
-                ENDING DATE/TIME  : 29/11/22  -  12:39:55
+                ENDING DATE/TIME  : 29/11/22  -  16:06:38
                 LOG FILE PATH     : D:/Backup/full_backup/full_backup_files
                 BKP FILE PATH     : D:/Backup/full_backup/full_backup_files
         ===========================================================================

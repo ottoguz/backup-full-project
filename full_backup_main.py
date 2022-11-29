@@ -1,23 +1,21 @@
-# FUNCTIONAL
-
-# Libraries used to create the backup + log
+# Bibliotecas utilizadas para criar o backup e arquivo de log
 import subprocess
 import time
 import platform
 
-# Libraries used to create the function that sends the log through email
+# Bibliotécas e módulos utilizados para criar a função enviar o log por Email
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
-# Library for the GUI
+# Módulos utilizados para criar a interface gráfica
 from tkinter import *
 from tkinter import filedialog
 
 
-# This function acknowledges which OS the program is running on
+# Função criada para reconhecer o Sistema operacional
 def select_os():
     os = platform.system()
     return os
@@ -26,6 +24,7 @@ def select_os():
 source_dir = ""
 
 
+# Função para atualizar o caminho para o diretório de origem do backup(GUI)
 def source_dir_func():
     global source_dir
     source_dir = filedialog.askdirectory()
@@ -36,6 +35,7 @@ def source_dir_func():
 dest_dir = ""
 
 
+# Função para atualizar o caminho para o diretório de destino do backup(GUI)
 def dest_dir_func():
     global dest_dir
     dest_dir = filedialog.askdirectory()
@@ -43,29 +43,36 @@ def dest_dir_func():
     return dest_dir
 
 
+# Função para mostrar a mensagem de aguarde enquanto faz o backup
 def put_message(e):
     message_label.config(text="Full backup is running, please wait...")
 
 
+# Função para remover a mensagem de aguarde após o término do backup
 def remove_message():
     message_label.config(text="")
 
 
+# Função para chamar a tela de envio de email
 def email_window():
+    # Função para mostrar a mensagem de envio do email
     def show_message(e):
         email_message.config(text="Email sent! Please check your inbox!")
 
+    # Configurações da tela de email
     window = Tk()
     window.title("Terminal X - Full Backup - Send Email")
     window.geometry("400x300")
     window.configure(bg="#FFFFFF")
 
+    # Cabeçalho da tela
     email_label = Label(window,
                         text="Send backup log file via Email:",
                         bg="#FFFFFF", fg="#000000",
                         font="Arial 14 bold")
     email_label.place(x=54, y=30)
 
+    # Indicação de rementente do email
     from_email_label = Label(window,
                              text="From: ",
                              bg="#FFFFFF",
@@ -73,6 +80,7 @@ def email_window():
                              font="Arial 12 bold")
     from_email_label.place(x=20, y=80)
 
+    # Entrada do endereço de email do remetente
     from_email = Entry(window,
                        bg="#008AC1",
                        fg="#FFFFFF",
@@ -80,6 +88,7 @@ def email_window():
                        font="Arial 11 bold")
     from_email.place(x=75, y=82)
 
+    # Indicação de email do destinatário
     to_email_label = Label(window,
                            text="To: ",
                            bg="#FFFFFF",
@@ -87,12 +96,14 @@ def email_window():
                            font="Arial 12 bold")
     to_email_label.place(x=20, y=125)
 
+    # Entrada do endereço de email do destinatário
     to_email = Entry(window,
                      bg="#008AC1",
                      fg="#FFFFFF", width
                      =36, font="Arial 11 bold")
     to_email.place(x=75, y=127)
 
+    # Indicação da senha do email do rementente
     pass_email_label = Label(window,
                              text="Password: ",
                              bg="#FFFFFF",
@@ -100,6 +111,7 @@ def email_window():
                              font="Arial 12 bold")
     pass_email_label.place(x=20, y=170)
 
+    # Entrada da senha de email do remetente
     pass_email = Entry(window,
                        bg="#008AC1",
                        fg="#FFFFFF",
@@ -107,9 +119,11 @@ def email_window():
                        font="Arial 11 bold", show="*")
     pass_email.place(x=120, y=173)
 
+    # Chamada das funções que criam o log e atualiza os dados do log
     backup.generate_log()
     backup.subscribe_log(backup.header(), backup.gen_list(), backup.footer())
 
+    # Botão de enviar (Chama o método que envia email da classe backup)
     send_button = Button(window,
                          command=lambda: backup.send_email(from_email.get(), to_email.get(), pass_email.get()),
                          text="SEND",
@@ -121,36 +135,49 @@ def email_window():
     send_button.place(x=180, y=220)
     send_button.bind("<Button>", show_message)
 
+    # Espaço para a mensagem de email enviado
     email_message = Label(window,
                           text="",
                           font="Arial 12 bold",
                           bg="#ffffff")
     email_message.place(x=55, y=262)
+
+    # Remove a mensagem de aguarde do termino do backup na tela principal
     remove_message()
 
 
+# Tela principal(GUI)
 root = Tk()
+
+# Configurações da tela
 root.title("Terminal X - Full Backup")
 root.geometry("800x600")
+
+# Plano de fundo da tela principal
 frame = PhotoImage(file="background.png")
+
+# Contorno da tela principal
 frame_label = Label(root,
                     border=0,
                     bg='grey',
                     image=frame)
 frame_label.place(x=0, y=0)
 
+# Horário de início do backup na tela principal
 header_text = Label(root,
                     text=f'Full Backup started at: {time.strftime("%H:%M:%S")}',
                     font="Arial 12 bold",
                     bg="#ffffff")
 header_text.place(x=210, y=100)
 
+# Label da entrada do diretório de origem do backup
 source_label = Label(root,
                      text=f'Select the backup source directory: ',
                      font="Arial 12 bold",
                      bg="#ffffff")
 source_label.place(x=210, y=150)
 
+# Botão para abrir o explorer e buscar o caminho do diretório de origem do backup
 source_button = Button(root,
                        command=lambda: source_dir_func(),
                        text="SELECT", bg="#008AC1",
@@ -160,6 +187,7 @@ source_button = Button(root,
                        relief="solid")
 source_button.place(x=220, y=180)
 
+# Espaço para subscrever o caminho do diretório de origem do backup
 source_search_txt = Label(root,
                           text=source_dir,
                           bg="#000000",
@@ -171,12 +199,14 @@ os = select_os()
 if os == "Linux":
     source_search_txt.place(x=300, y=183)
 
+# Label da entrada do diretório de destino do backup
 destination_label = Label(root,
                           text=f'Select the backup destination directory: ',
                           font="Arial 12 bold",
                           bg="#ffffff")
 destination_label.place(x=210, y=220)
 
+# Botão para abrir o explorer e buscar o caminho do diretório de destino do backup
 destination_button = Button(root,
                             command=lambda: dest_dir_func(),
                             text="SELECT",
@@ -187,6 +217,7 @@ destination_button = Button(root,
                             relief="solid")
 destination_button.place(x=220, y=250)
 
+# Espaço para subscrever o caminho do diretório de origem do backup
 destination_search_txt = Label(root,
                                text=dest_dir,
                                bg="#000000",
@@ -197,6 +228,7 @@ destination_search_txt.place(x=280, y=250)
 if os == "Linux":
     destination_search_txt.place(x=300, y=253)
 
+# Botão para iniciar o backup (Chama o método que realiza o backup na classe backup e a função com a tela de email)
 start_button = Button(root,
                       command=lambda: backup.gen_backup() and email_window(),
                       text="START",
@@ -208,6 +240,7 @@ start_button = Button(root,
 start_button.place(x=440, y=300)
 start_button.bind("<Button>", put_message)
 
+# Espaço para a presentar a mensagem de backup em andamento para o usuario aguardar
 message_label = Label(root,
                       text="",
                       font="Arial 12 bold",
@@ -215,19 +248,24 @@ message_label = Label(root,
 message_label.place(x=332, y=350)
 
 
+# Classe backup
 class Backup:
+    # Atributos da classe backup
     def __init__(self, time_now=time.strftime('%H:%M:%S'), date_now=time.strftime('%d-%m-%y')):
         self.__backup_destination = ''
         self.__backup_source = ''
         self.__time_now = time_now
         self.__date_now = date_now
 
+    # Retorno do horário atual
     def get_time_now(self):
         return self.__time_now
 
+    # Retorno da data atual
     def get_date_now(self):
         return self.__date_now
 
+    # Método para mover o arquivo de log para a pasta de destino junto ao backup compactado
     def open_move_file(self):
         if os == "Windows":
             open_file = "notepad " + file
@@ -246,7 +284,7 @@ class Backup:
             subprocess.run(log_to_folder, shell=True)
             return file
 
-    # Header of the Full Backup display
+    # Método contendo o cabeçalho que é enviado no log com o horário de início do backup
     def header(self):
         time_now = Backup.get_time_now(self)
         header = '''
@@ -268,6 +306,7 @@ class Backup:
         '''.format(time_now)
         return header
 
+    # Método que entra na pasta onde os arquivos do backup estão e compacta
     def gen_backup(self):
         date_now = Backup.get_date_now(self)
         os = select_os()
@@ -285,17 +324,7 @@ class Backup:
             subprocess.run(backup, shell=True)
             return backup
 
-    def gen_list(self):
-        os = select_os()
-        if os == "Windows":
-            files = "cd /d " + self.__backup_source + " && dir /s"
-            files_out = subprocess.getoutput(files)
-            return files_out
-        elif os == "Linux":
-            files = "cd " + self.__backup_source + " && ls"
-            files_out = subprocess.getoutput(files)
-            return files_out
-
+    # Método que cria o arquivo de log(vazio)
     def generate_log(self):
         date_now = Backup().get_date_now()
         os = select_os()
@@ -308,6 +337,19 @@ class Backup:
             path_log = path_log + "\\" + file_log
             return path_log
 
+    # Método que lista os arquivos a serem inclusos no backup para que sejam impressos no log
+    def gen_list(self):
+        os = select_os()
+        if os == "Windows":
+            files = "cd /d " + self.__backup_source + " && dir /s"
+            files_out = subprocess.getoutput(files)
+            return files_out
+        elif os == "Linux":
+            files = "cd " + self.__backup_source + " && ls"
+            files_out = subprocess.getoutput(files)
+            return files_out
+
+    # Método que cria o rodapé que é enviado no arquivo de log
     def footer(self):
         footer = '''
         ===========================================================================
@@ -320,6 +362,7 @@ class Backup:
                    self.__backup_destination)
         return footer
 
+    # Método que subscreve e atualiza os dados no arquivo de log
     def subscribe_log(self, header, file_list, footer):
         file = 'full_backup_log_{}.txt'.format(time.strftime('%d-%m-%y'))
         f = open(file, 'w')
@@ -328,6 +371,7 @@ class Backup:
         f.write(footer)
         f.close()
 
+    # Método que envia o email ao destinatário
     def send_email(self, from_email, to_email, pass_email):
         os = select_os()
         global file
@@ -364,14 +408,15 @@ class Backup:
             text = msg.as_string()
             server.sendmail(fromaddr, toaddr, text)
             server.quit()
-
+            # Chamamento do método que move o arquivo de log para a pasta de destino
             self.open_move_file()
 
         except:
-
+            # Chamamento do método que move o arquivo de log para a pasta de destino
             self.open_move_file()
 
 
+# Instância da classe Backup
 backup = Backup()
-
+# Loop da GUI
 root.mainloop()
